@@ -1,6 +1,8 @@
+from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
 from typing import Optional
+from fastapi import Depends, HTTPException
 
 SECRET_KEY = "your-secret-key"
 ALGORITHM = "HS256"
@@ -19,3 +21,10 @@ def verify_access_token(token: str):
         return payload
     except JWTError:
         return None
+
+def decode_access_token(token: str):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        return payload
+    except JWTError as e:
+        raise ValueError("Token is invalid or expired") from e
