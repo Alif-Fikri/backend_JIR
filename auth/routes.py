@@ -1,16 +1,62 @@
 import logging
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, Request
 from passlib.context import CryptContext
 from database import db
 from auth.utils import create_access_token, decode_access_token
 from pydantic import BaseModel, EmailStr
 from auth.models import SignupRequest, LoginRequest
 from fastapi.security import OAuth2PasswordBearer
+from google.auth.transport import requests
+from google.oauth2 import id_token
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 blacklisted_tokens = set()
+
+
+@router.post("/google/callback")
+async def google_callback(request: Request):
+    body = await request.json()
+    id_token_str = body.get("id_token")
+
+    if not id_token_str:
+        raise HTTPException(status_code=400, detail="ID Token is required")
+
+    try:
+        # Validasi ID Token menggunakan Google
+        decoded_token = id_token.verify_oauth2_token(
+            id_token_str, requests.Request()
+        )
+        email = decoded_token.get("email")
+        name = decoded_token.get("name")
+        google_id = decoded_token.get("sub")
+
+        if not email:
+            raise HTTPException(status_code=400, detail="Invalid token")
+
+        users_collection = db["users"]
+
+        # Simpan atau perbarui pengguna di database
+        user = users_collection.find_one({"email": email})
+        if not user:
+            new_user = {
+                "username": name,
+                "email": email,
+                "google_id": google_id,
+                "is_active": True,
+                "is_admin": False,
+            }
+            users_collection.insert_one(new_user)
+            user = new_user
+
+        # Buat token JWT untuk pengguna
+        access_token = create_access_token(data={"sub": user["email"]})
+
+        return {"access_token": access_token, "token_type": "bearer"}
+
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid ID Token")
 
 @router.post("/signup")
 async def signup(request: SignupRequest):
