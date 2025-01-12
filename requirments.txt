@@ -1,7 +1,0 @@
-fastapi
-uvicorn
-pymongo
-python-jose
-bcrypt
-email-validator
-python-dotenv
