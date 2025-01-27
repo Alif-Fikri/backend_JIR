@@ -24,7 +24,6 @@ async def google_callback(request: Request):
         raise HTTPException(status_code=400, detail="ID Token is required")
 
     try:
-        # Validasi ID Token menggunakan Google
         decoded_token = id_token.verify_oauth2_token(
             id_token_str, requests.Request()
         )
@@ -37,7 +36,6 @@ async def google_callback(request: Request):
 
         users_collection = db["users"]
 
-        # Simpan atau perbarui pengguna di database
         user = users_collection.find_one({"email": email})
         if not user:
             new_user = {

@@ -23,7 +23,6 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
 
 @router.delete("/delete")
 async def delete_account(token: str = Depends(oauth2_scheme)):
-    """Endpoint untuk menghapus akun pengguna."""
     payload = verify_access_token(token)
     if not payload:
         raise HTTPException(status_code=401, detail="Invalid token")
@@ -42,7 +41,6 @@ async def change_password(
     new_password: str, 
     token: str = Depends(oauth2_scheme)
 ):
-    """Endpoint untuk mengubah password pengguna."""
     payload = verify_access_token(token)
     if not payload:
         raise HTTPException(status_code=401, detail="Invalid token")
@@ -52,11 +50,10 @@ async def change_password(
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     
-    # Verifikasi password lama
     if not pwd_context.verify(old_password, user["hashed_password"]):
         raise HTTPException(status_code=400, detail="Old password is incorrect")
     
-    # Hash password baru
     hashed_new_password = pwd_context.hash(new_password)
     update_user_password(email, hashed_new_password)
     return {"message": "Password changed successfully"}
+
