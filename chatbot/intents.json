@@ -1,0 +1,241 @@
+{
+  "intents": [
+    {
+      "tag": "salam",
+      "patterns": [
+        "Halo",
+        "Hai",
+        "Apa kabar?",
+        "Selamat pagi",
+        "Selamat malam",
+        "Ada orang?",
+        "Halo, ada yang bisa saya bantu?",
+        "Hai, siapa di sana?",
+        "Selamat siang!",
+        "Halo semuanya",
+        "Permisi",
+        "Apa ada yang bisa membantu?",
+        "Hey!",
+        "Selamat sore!",
+        "Halo, siap untuk membantu?",
+        "Apa kabar hari ini?"
+      ],
+      "responses": [
+        "Halo, apa kabar? Senang bertemu dengan Anda.",
+        "Hai, ada yang bisa saya bantu hari ini?",
+        "Selamat datang di layanan publik Smart City, bagaimana saya bisa membantu?",
+        "Halo! Ada yang bisa saya bantu untuk Anda?",
+        "Selamat datang! Saya di sini untuk membantu Anda.",
+        "Hai! Ada pertanyaan seputar cuaca, lalu lintas, atau lainnya?",
+        "Selamat pagi! Ada yang bisa dibantu?",
+        "Selamat malam! Semoga harimu menyenangkan. Apa yang bisa saya bantu?",
+        "Halo, silakan ajukan pertanyaan apa pun.",
+        "Hai, ada yang butuh bantuan?",
+        "Halo, apa yang bisa saya bantu kali ini?",
+        "Hai! Siap membantu apa pun yang Anda butuhkan.",
+        "Halo! Silakan ajukan pertanyaan tentang kota.",
+        "Selamat siang, ada yang perlu dibantu?",
+        "Permisi, bagaimana saya bisa membantu hari ini?"
+      ]
+    },
+    {
+      "tag": "selamat_tinggal",
+      "patterns": [
+        "Sampai jumpa",
+        "Dadah",
+        "Selamat tinggal",
+        "Sampai nanti",
+        "Saya pergi dulu",
+        "Saya pamit",
+        "Sampai bertemu lagi",
+        "Terima kasih, saya pamit",
+        "Bye bye",
+        "Oke, saya pergi dulu",
+        "Saya akan pergi sekarang",
+        "Sampai ketemu lagi",
+        "Sampai lain waktu",
+        "Saya akan kembali nanti"
+      ],
+      "responses": [
+        "Sampai jumpa, terima kasih telah menggunakan layanan kami!",
+        "Semoga harimu menyenangkan, sampai bertemu lagi!",
+        "Terima kasih telah berkunjung, sampai jumpa lagi!",
+        "Jangan lupa kembali jika butuh bantuan!",
+        "Selamat tinggal, semoga hari Anda baik!",
+        "Semoga semuanya berjalan lancar, sampai jumpa!",
+        "Kami tunggu kedatangan Anda berikutnya!",
+        "Terima kasih, hati-hati di jalan!",
+        "Sampai jumpa di kesempatan berikutnya!",
+        "Selamat tinggal, sampai ketemu lain waktu!",
+        "Kami akan siap membantu saat Anda kembali!",
+        "Terima kasih sudah menghubungi kami, sampai nanti!"
+      ]
+    },
+    {
+      "tag": "terima_kasih",
+      "patterns": [
+        "Terima kasih",
+        "Makasih",
+        "Terima kasih banyak",
+        "Sangat membantu",
+        "Saya menghargai bantuan Anda",
+        "Terima kasih atas bantuannya",
+        "Terima kasih untuk informasinya",
+        "Makasih banyak",
+        "Saya sangat berterima kasih"
+      ],
+      "responses": [
+        "Sama-sama!",
+        "Senang bisa membantu!",
+        "Dengan senang hati!",
+        "Terima kasih kembali!",
+        "Saya senang bisa membantu Anda.",
+        "Sama-sama, semoga informasi ini berguna!",
+        "Terima kasih kembali, silakan hubungi lagi jika butuh bantuan.",
+        "Dengan senang hati, selalu siap membantu!",
+        "Kapan pun Anda butuh, saya di sini untuk membantu."
+      ]
+    },
+    {
+      "tag": "cuaca",
+      "patterns": [
+        "Bagaimana cuaca hari ini?",
+        "Cuaca di Jakarta seperti apa?",
+        "Prakiraan cuaca?",
+        "Apakah akan hujan?",
+        "Cuaca esok hari bagaimana?",
+        "Apa cuaca besok akan cerah?",
+        "Apakah ada tanda-tanda hujan?",
+        "Cuaca sekarang seperti apa?",
+        "Berapa suhu udara saat ini?"
+      ],
+      "responses": [
+        "Cuaca hari ini cerah, tidak ada tanda-tanda hujan.",
+        "Prakiraan cuaca hari ini: berawan dengan peluang hujan sore hari.",
+        "Besok diperkirakan hujan ringan di sebagian besar wilayah Jakarta.",
+        "Cuaca hari ini hangat dengan suhu sekitar 30°C.",
+        "Langit cerah dengan angin sepoi-sepoi di sebagian besar wilayah.",
+        "Hujan diprediksi mulai sore hari di beberapa daerah Jakarta.",
+        "Tidak ada hujan saat ini, cuaca stabil.",
+        "Prakiraan untuk hari esok: suhu akan turun sedikit dengan kemungkinan hujan ringan."
+      ]
+    },
+    {
+      "tag": "banjir",
+      "patterns": [
+        "Apakah ada banjir?",
+        "Daerah mana yang banjir?",
+        "Apakah Jakarta terendam banjir?",
+        "Banjir di Monas?",
+        "Apakah aman dari banjir?",
+        "Apakah ada laporan banjir?",
+        "Banjir di Jakarta Utara?",
+        "Ada genangan air di mana?",
+        "Bagaimana kondisi banjir di Jakarta?"
+      ],
+      "responses": [
+        "Saat ini tidak ada laporan banjir di Jakarta.",
+        "Ada banjir di beberapa titik di Jakarta Selatan.",
+        "Daerah Monas aman dari banjir.",
+        "Waspada, ada laporan banjir di Jakarta Timur.",
+        "Beberapa daerah di Jakarta Barat mengalami genangan air.",
+        "Tidak ada banjir di daerah utama, tetapi harap waspada terhadap genangan air di jalan kecil.",
+        "Jakarta Utara saat ini terkena banjir ringan.",
+        "Kondisi banjir saat ini cukup terkendali, tidak ada area yang kritis."
+      ]
+    },
+    {
+      "tag": "kepadatan_lalu_lintas",
+      "patterns": [
+        "Bagaimana lalu lintas di Jakarta?",
+        "Apakah Monas macet?",
+        "Lalu lintas di Sudirman bagaimana?",
+        "Ada kemacetan di Jakarta?",
+        "Situasi lalu lintas di Jakarta Selatan?",
+        "Bagaimana kondisi jalan saat ini?",
+        "Apakah ada kemacetan di jalan utama?",
+        "Apakah jalanan lancar?",
+        "Kondisi lalu lintas sekarang bagaimana?"
+      ],
+      "responses": [
+        "Lalu lintas di Monas lancar, tidak ada kemacetan.",
+        "Kemacetan dilaporkan di Sudirman dan Thamrin.",
+        "Lalu lintas padat di Jakarta Barat, disarankan mencari rute alternatif.",
+        "Jalanan utama di Jakarta cukup lancar saat ini.",
+        "Ada kemacetan di beberapa titik di Jakarta Selatan.",
+        "Perlu diwaspadai kemacetan di Sudirman, sebaiknya hindari area ini.",
+        "Lalu lintas lancar di sebagian besar wilayah, tetapi padat di jalan arteri.",
+        "Disarankan untuk menggunakan jalan alternatif karena macet di daerah pusat kota."
+      ]
+    },
+    {
+      "tag": "data_gempa",
+      "patterns": [
+        "Apakah ada gempa hari ini?",
+        "Gempa terakhir di Jakarta kapan?",
+        "Adakah gempa di Jabodetabek?",
+        "Ada info gempa terbaru?",
+        "Berapa kekuatan gempa terbaru?",
+        "Apakah ada laporan gempa?",
+        "Gempa di Indonesia hari ini?",
+        "Apakah terjadi gempa besar hari ini?"
+      ],
+      "responses": [
+        "Tidak ada laporan gempa terbaru di Jakarta.",
+        "Gempa terakhir tercatat 3 hari yang lalu di Jawa Barat.",
+        "Gempa terbaru terjadi di wilayah Selat Sunda dengan magnitudo 4.2.",
+        "Tidak ada gempa yang dilaporkan hari ini.",
+        "Gempa kecil terjadi di luar Jakarta, tidak ada dampak signifikan.",
+        "Laporan terakhir mencatat gempa di sekitar wilayah Banten."
+      ]
+    },
+    {
+      "tag": "lelucon",
+      "patterns": [
+        "Ceritain lelucon dong",
+        "Ada lelucon nggak?",
+        "Bisa kasih guyonan?",
+        "Coba bikin saya ketawa",
+        "Punya lelucon lucu?",
+        "Kasih jokes dong",
+        "Lelucon apa yang kamu tahu?",
+        "Bikin guyonan, yuk!",
+        "Ada joke yang lucu?"
+      ],
+      "responses": [
+        "Kenapa komputer suka curhat? Soalnya dia punya banyak masalah!",
+        "Kenapa ayam nyebrang jalan? Karena mau ngecek update lalu lintas di seberang!",
+        "Saya tahu banyak soal Smart City, tapi kenapa Wi-Fi kota putus cinta? Karena dia merasa koneksi-nya lemah!",
+        "Ada dua orang pakai kabel, yang satu ngaku tembaga, yang lain bilang dia koneksi nirkabel!",
+        "Kenapa programmer selalu bawa kacang? Karena kalau ngoding, mereka butuh snack overflow!",
+        "Kenapa kota selalu aman? Karena dia dijaga oleh firewall!",
+        "Apa bedanya program yang berjalan lancar sama saya? Kalau saya selalu siap bikin kamu ketawa!",
+        "Hati-hati dengan lalu lintas, katanya di jalan ada kemacetan yang bikin hati buntu!"
+      ]
+    },
+    {
+      "tag": "juki",
+      "patterns": [
+        "Apa itu Juki?",
+        "Apa saja fitur Juki?",
+        "Bagaimana cara menggunakan Juki?",
+        "Juki untuk apa?",
+        "Apa keuntungan menggunakan Juki?",
+        "Bisakah Juki membantu dalam situasi banjir?",
+        "Apa saja informasi yang bisa didapatkan dari Juki?",
+        "Bagaimana Juki memantau keramaian?"
+      ],
+      "responses": [
+        "Juki adalah aplikasi Smart City yang dirancang untuk meningkatkan kualitas hidup masyarakat di lingkungan perkotaan.",
+        "Fitur utama Juki termasuk pemantauan keramaian, info terbaru gempa, perkiraan cuaca, status banjir, dan navigasi alternatif.",
+        "Anda dapat menggunakan Juki untuk mendapatkan informasi terkini tentang kondisi cuaca, gempa, dan kepadatan lalu lintas.",
+        "Juki berguna untuk merencanakan aktivitas sehari-hari dengan lebih baik dan menghindari area yang berisiko tinggi.",
+        "Dengan Juki, pengguna dapat lebih siap menghadapi berbagai kondisi di lingkungan kota, menjadikan kehidupan lebih aman dan nyaman.",
+        "Juki dapat memberikan laporan tentang status banjir dan membantu pengguna mengetahui area yang aman.",
+        "Dari Juki, Anda bisa mendapatkan informasi tentang keramaian di berbagai area, sehingga dapat merencanakan aktivitas dengan lebih efisien.",
+        "Juki memantau keramaian dengan memanfaatkan data real-time untuk memberikan informasi akurat kepada pengguna."
+      ]
+    }
+    
+  ]
+}

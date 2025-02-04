@@ -8,6 +8,7 @@ from auth.models import SignupRequest, LoginRequest
 from fastapi.security import OAuth2PasswordBearer
 from google.auth.transport import requests
 from google.oauth2 import id_token
+from jose import jwt
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
@@ -62,7 +63,7 @@ async def signup(request: SignupRequest):
 
     if users_collection.find_one({"email": request.email}):
         raise HTTPException(status_code=400, detail="Email already registered")
-    
+
     hashed_password = pwd_context.hash(request.password)
 
     user = {
@@ -73,7 +74,11 @@ async def signup(request: SignupRequest):
         "is_admin": False,
     }
     users_collection.insert_one(user)
-    return {"message": "User created successfully"}
+
+    # Generate token
+    access_token = jwt.encode({"sub": request.email}, "secret_key", algorithm="HS256")
+    
+    return {"access_token": access_token, "message": "User created successfully"}
 
 @router.post("/login")
 async def login(request: LoginRequest):
