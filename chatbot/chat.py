@@ -1,22 +1,26 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from fastapi.responses import FileResponse, StreamingResponse
+from fastapi.responses import FileResponse
+import io
+import os
 import torch
 import json
 import random
-import io
 import numpy as np
 from gtts import gTTS
-from model import NeuralNet
-from nltk_utils import bag_of_words, tokenize
+from chatbot.model import NeuralNet
+from chatbot.nltk_utils import bag_of_words, tokenize
 
-app = FastAPI()
+chat_router = APIRouter()  
 
-with open("intents.json", "r", encoding="utf-8") as json_data:
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  
+INTENTS_PATH = os.path.join(BASE_DIR, "intents.json")
+
+with open(INTENTS_PATH, "r") as json_data:
     intents = json.load(json_data)
 
-FILE = "data.pth"
-data = torch.load(FILE, map_location=torch.device('cpu'))  # Gunakan CPU jika tidak ada GPU
+FILE = os.path.join(BASE_DIR, "data.pth")
+data = torch.load(FILE, map_location=torch.device("cpu"))
 
 input_size = data["input_size"]
 hidden_size = data["hidden_size"]
@@ -25,23 +29,21 @@ all_words = data["all_words"]
 tags = data["tags"]
 model_state = data["model_state"]
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model = NeuralNet(input_size, hidden_size, output_size).to(device)
+model = NeuralNet(input_size, hidden_size, output_size)
 model.load_state_dict(model_state)
 model.eval()
 
-bot_name = "Sam"
-last_response = ""
-audio_cache = {}  # Cache audio untuk menghindari pembuatan ulang
+device = torch.device("cpu")
 
-# Model request untuk menerima data dari frontend
+bot_name = "Sam"
+audio_cache = {}
+
 class ChatRequest(BaseModel):
     message: str
 
-@app.post("/get_response")
-async def get_response(request: ChatRequest):
-    global last_response
-    sentence = tokenize(request.message)
+@chat_router.post("/get_response")  # Gunakan chat_router
+async def get_response(chat_request: ChatRequest):
+    sentence = tokenize(chat_request.message)
     X = bag_of_words(sentence, all_words)
     X = X.reshape(1, X.shape[0])
     X = torch.from_numpy(X).to(device)
@@ -56,29 +58,21 @@ async def get_response(request: ChatRequest):
     if prob.item() > 0.75:
         for intent in intents["intents"]:
             if tag == intent["tag"]:
-                last_response = random.choice(intent["responses"])
-                return {"response": last_response}
+                response = random.choice(intent["responses"])
+                return {"response": response}
     else:
-        last_response = "Saya tidak mengerti..."
-        return {"response": last_response}
+        return {"response": "Saya tidak mengerti..."}
 
-@app.get("/get_audio")
-async def get_audio():
-    global last_response
-    if last_response in audio_cache:
-        # Jika audio sudah ada di cache, kirim ulang tanpa membuat ulang file
-        return StreamingResponse(io.BytesIO(audio_cache[last_response]), media_type="audio/mpeg")
-
-    tts = gTTS(text=last_response, lang="id")
+@chat_router.get("/get_audio")  # Gunakan chat_router
+async def get_audio(response_text: str):
+    if response_text in audio_cache:
+        return FileResponse(audio_cache[response_text], media_type="audio/mpeg")
+    
+    tts = gTTS(text=response_text, lang='id')
     audio_fp = io.BytesIO()
     tts.write_to_fp(audio_fp)
     audio_fp.seek(0)
-
-    # Simpan ke cache
-    audio_cache[last_response] = audio_fp.getvalue()
-
-    return StreamingResponse(io.BytesIO(audio_cache[last_response]), media_type="audio/mpeg")
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    
+    audio_cache[response_text] = audio_fp
+    
+    return FileResponse(audio_fp, media_type="audio/mpeg")
