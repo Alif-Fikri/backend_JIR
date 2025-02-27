@@ -41,7 +41,7 @@ audio_cache = {}
 class ChatRequest(BaseModel):
     message: str
 
-@chat_router.post("/get_response")  # Gunakan chat_router
+@chat_router.post("/get_response") 
 async def get_response(chat_request: ChatRequest):
     sentence = tokenize(chat_request.message)
     X = bag_of_words(sentence, all_words)

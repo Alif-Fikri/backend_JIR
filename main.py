@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from auth.routes import router as auth_router
 from users.routes import router as users_router
 from chatbot.chat import chat_router
+from cctv.main import cctv_router
+# from cctv.main_video import cctv_video_router
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -17,3 +19,5 @@ app.add_middleware(
 app.include_router(auth_router)
 app.include_router(users_router)
 app.include_router(chat_router)
+app.include_router(cctv_router)
+# app.include_router(cctv_video_router)
