@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 import cv2
 import torch
 from torchvision import transforms
-from model import CSRNet
+from cctv.model import CSRNet
 from PIL import Image
 import numpy as np
 from selenium import webdriver
