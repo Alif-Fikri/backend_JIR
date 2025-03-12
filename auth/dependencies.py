@@ -10,10 +10,6 @@ import os
 from dotenv import load_dotenv
 from auth.database import settings
 
-load_dotenv()
-SECRET_KEY = os.getenv("SECRET_KEY")
-ALGORITHM = os.getenv("ALGORITHM")
-
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
 async def get_current_user(
@@ -31,8 +27,8 @@ async def get_current_user(
     
     try:
         payload = jwt.decode(token, 
-            settings.SECRET_KEY, 
-            algorithms=[settings.ALGORITHM])
+            settings.secret_key, 
+            algorithms=[settings.algorithm])
         email: str = payload.get("sub")
         if email is None:
             raise credentials_exception

@@ -50,10 +50,6 @@ def capture_and_predict(location, url):
             driver.save_screenshot(f'screenshot_{location}.png')
             frame = cv2.imread(f'screenshot_{location}.png')
 
-            # Crop dan resize frame
-            frame = frame[100:820, 200:880]
-            frame = cv2.resize(frame, (1080, 720))
-
             # Convert ke PIL Image dan lakukan transformasi
             img = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
             img_tensor = transform(img).unsqueeze(0).to(device)

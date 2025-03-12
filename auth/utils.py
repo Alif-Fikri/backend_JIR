@@ -26,8 +26,8 @@ def verify_access_token(token: str):
     try:
         payload = jwt.decode(
             token,
-            settings.SECRET_KEY,
-            algorithms=[settings.ALGORITHM]
+            settings.secret_key,
+            algorithms=[settings.algorithm]
         )
         return payload
     except JWTError:
