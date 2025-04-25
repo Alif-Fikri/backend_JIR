@@ -18,6 +18,12 @@ class ParkBase(BaseModel):
 class ParkCreate(ParkBase):
     address: Optional[Address]
     facilities: Optional[List[str]]
+    
+class ParkSimpleResponse(BaseModel):
+    name: str
+    street: Optional[str]
+    latitude: float
+    longitude: float
 
 class ParkResponse(ParkBase):
     id: int
@@ -27,3 +33,4 @@ class ParkResponse(ParkBase):
 
     class Config:
         orm_mode = True
+    
