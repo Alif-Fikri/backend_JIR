@@ -5,10 +5,11 @@ from auth.database import init_db as init_auth_db
 from chatbot.chat import chat_router
 # from cctv.main import cctv_router
 # from cctv.main_video import cctv_video_router
-from park.routers.park import router as park_router
+from routers import park
 from park.database import init_db as init_park_db
 from fastapi.middleware.cors import CORSMiddleware
 from weather.routers import weather
+from routers import report
 
 init_auth_db()
 init_park_db()
@@ -24,11 +25,12 @@ app.add_middleware(
 
 app.include_router(weather.router)
 app.include_router(auth_router)
+app.include_router(report.router)
 # app.include_router(users_router)
 app.include_router(chat_router)
 # app.include_router(cctv_router)
 # app.include_router(cctv_video_router)
-# app.include_router(park_router)
+# app.include_router(park.router)
 # @app.on_event("startup")
 # async def startup_event():
 #     from park.utils import fetch_parks_data, parse_park_element

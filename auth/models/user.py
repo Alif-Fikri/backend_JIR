@@ -1,5 +1,7 @@
 from sqlalchemy import Column, Integer, String, Boolean
 from auth.database import Base
+from sqlalchemy.orm import relationship
+from report.models.report import Report
 
 class User(Base):
     __tablename__ = "users"
@@ -11,6 +13,8 @@ class User(Base):
     google_id = Column(String(255), nullable=True)
     is_active = Column(Boolean, default=True)
     is_admin = Column(Boolean, default=False)
+
+    reports = relationship("Report", back_populates="user")
 
 class BlacklistedToken(Base):
     __tablename__ = "blacklisted_tokens"
