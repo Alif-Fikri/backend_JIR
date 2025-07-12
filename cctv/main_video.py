@@ -61,6 +61,6 @@ def capture_and_predict(location, video_path):
 for loc, path in video_sources.items():
     threading.Thread(target=capture_and_predict, args=(loc, path), daemon=True).start()
 
-@cctv_video_router.get("/get_predictions")
+@cctv_video_router.get("/api/get_predictions")
 def get_predictions():
     return JSONResponse(content=latest_predictions)

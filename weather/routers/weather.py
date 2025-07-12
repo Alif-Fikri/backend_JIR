@@ -2,7 +2,7 @@ from fastapi import APIRouter, Query, HTTPException
 from weather.services.weather import get_weather_by_coords
 from weather.schemas.weather import WeatherResponse
 
-router = APIRouter(prefix="/weather", tags=["Weather"])
+router = APIRouter(prefix="/api/weather", tags=["Weather"])
 
 @router.get("/", response_model=WeatherResponse)
 def weather(lat: float = Query(...), lon: float = Query(...)):

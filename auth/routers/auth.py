@@ -24,7 +24,7 @@ from auth.dependencies import get_current_user, oauth2_scheme
 from auth.utils import create_access_token
 from auth.database import settings
 
-router = APIRouter(prefix="/auth", tags=["auth"])
+router = APIRouter(prefix="/api/auth", tags=["auth"])
 
 @router.post("/signup", response_model=UserResponse)
 def signup(user: UserCreate, db: Session = Depends(get_db)):

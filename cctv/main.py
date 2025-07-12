@@ -75,7 +75,7 @@ def capture_and_predict(location, url):
 for location, url in cctv_urls.items():
     threading.Thread(target=capture_and_predict, args=(location, url), daemon=True).start()
 
-@cctv_router.get("/get_predictions")
+@cctv_router.get("/api/get_predictions")
 def get_predictions():
     return JSONResponse(content=latest_predictions)
 

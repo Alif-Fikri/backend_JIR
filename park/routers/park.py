@@ -10,7 +10,7 @@ from park.schemas import ParkResponse, park, ParkSimpleResponse
 from .. import models
 from sqlalchemy.orm import joinedload
 
-router = APIRouter(prefix="/parks",tags=["parks"])
+router = APIRouter(prefix="/api/parks",tags=["parks"])
 
 # @router.get("/", response_model=List[schemas.ParkResponse])
 # def get_parks(
@@ -56,7 +56,6 @@ def get_parks_simple(
     limit: int = 100
 ):
     try:
-        # Query menggunakan model yang di-import langsung
         parks = db.query(
             Park.name,
             Address.street,

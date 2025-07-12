@@ -8,7 +8,7 @@
 # from auth.database import get_db
 # from auth.dependencies import get_current_user
 
-# router = APIRouter(prefix="/report", tags=["report"])
+# router = APIRouter(prefix="/api/report", tags=["report"])
 
 # UPLOAD_DIR = "uploads/reports"
 # os.makedirs(UPLOAD_DIR, exist_ok=True)
