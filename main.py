@@ -11,6 +11,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from weather.routers import weather
 # from report.routes import report
 from flood.routers import flood
+from routing.routes import routing
+from search.routes import search
 
 init_auth_db()
 init_park_db()
@@ -33,6 +35,8 @@ app.include_router(chat_router)
 # app.include_router(cctv_video_router)
 # app.include_router(park.router)
 app.include_router(flood.router)
+app.include_router(routing.router)
+app.include_router(search.router)
 # @app.on_event("startup")
 # async def startup_event():
 #     from park.utils import fetch_parks_data, parse_park_element

@@ -11,7 +11,7 @@ from gtts import gTTS
 from chatbot.model import NeuralNet
 from chatbot.nltk_utils import bag_of_words, tokenize
 
-chat_router = APIRouter()  
+chat_router = APIRouter(prefix="/api/chat", tags =["chat"])  
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  
 INTENTS_PATH = os.path.join(BASE_DIR, "intents.json")
