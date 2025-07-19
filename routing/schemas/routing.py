@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Tuple
 from pydantic import BaseModel
 
 class RouteRequest(BaseModel):
@@ -19,3 +19,8 @@ class RouteResponse(BaseModel):
     route_points: List[List[float]]  #lon, lat
     steps: List[RouteStep]
     alternatives: List[List[List[float]]] = []
+
+class OptimizedRouteResponse(BaseModel):
+    status: str
+    waypoints: List[Tuple[float, float]]
+    route: dict
